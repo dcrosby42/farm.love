@@ -5,5 +5,6 @@ return {
   "castle.systems.sound",
   "castle.systems.touchbutton",
   "modules.barnyard.systems.animaltouch",
+  "modules.barnyard.systems.spawnerbuttons",
   "castle.systems.follower",
 }

@@ -4,4 +4,5 @@ return {
   -- "castle.systems.debugdraw",
   "castle.drawSystems.pic",
   "castle.drawSystems.sound",
+  "castle.drawSystems.shapes",
 }
