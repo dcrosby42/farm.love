@@ -6,7 +6,7 @@ Castle.onload = function()
     fullscreen = false,
     resizable = false,
     highdpi = false,
-    minwidth = 400,
-    minheight = 300,
+    -- minwidth = 400,
+    -- minheight = 300,
   })
 end
