@@ -52,13 +52,13 @@ function E.initialEntities(res)
   local upDown = true
   for _, sp in ipairs(spawners) do
     if upDown then
-      y = 25
+      y = 50
     else
-      y = 125
+      y = 150
     end
     sp.x = x
     sp.y = y
-    E.animalSpawner(root, sp)
+    E.animalSpawner(root, sp, res)
     upDown = not upDown
     x = x + 120
   end
@@ -67,12 +67,14 @@ function E.initialEntities(res)
 end
 
 function E.zooKeeper(estore, res)
+  local bgmusicState = res.settings.dev.bgmusic and 'playing' or 'paused'
+
   return estore:newEntity({
     {'name', {name = "name"}},
     {'tag', {name = "zookeeper"}},
     {'pic', {id = 'zoo_keeper', sx = 1, sy = 1.05}}, -- zoo_keeper.png is 731px tall, we want to stretch it to 768
     {'pos', {}},
-    -- {'sound', {sound = 'farm_music', loop = true}},
+    {'sound', {state = bgmusicState, sound = 'farm_music', loop = true}},
     {'physicsWorld', {gy = 9.8 * 64, allowSleep = false}},
   })
 end
@@ -98,7 +100,7 @@ function E.animal(parent, kind, res)
     {'circleShape', {radius = 50}},
   })
 end
-function E.animalSpawner(parent, opts)
+function E.animalSpawner(parent, opts, res)
   -- Comp.define("label", {'text','Label', 'color', {0,0,0},'font',nil, 'width', nil, 'align',nil, 'height',nil,'valign',nil,'offx',0,'offy',0,'debugonly',false})
   return parent:newEntity({
     {'tag', {name = "animalSpawner"}},
@@ -109,14 +111,14 @@ function E.animalSpawner(parent, opts)
         text = opts.text,
         color = opts.color,
         width = 200,
-        height = 100,
+        height = 50,
         align = "center",
         valign = "middle",
         shadowcolor = {0, 0, 0, 0.5},
         shadowx = 3,
         shadowy = 3,
         font = 'cartoon_medium',
-        debugdraw = false,
+        debugdraw = res.settings.dev.buttonBoxes,
       },
     },
     {'animalspawner', {kind = opts.kind}},

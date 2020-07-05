@@ -14,7 +14,11 @@ return {
   --   name = "mydebug",
   --   datafile = "modules/barnyard/mydebug.settings.lua",
   -- },
-  {type = "settings", name = "barnyard", data = {}},
+  {
+    type = "settings",
+    name = "dev",
+    data = {bgmusic = true, buttonBoxes = false},
+  },
   {
     type = "pic",
     name = "zoo_keeper",

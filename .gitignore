@@ -2,3 +2,6 @@ a.lua
 tags
 .tags*
 .vscode
+/build
+/farm.love
+
