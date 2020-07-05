@@ -17,7 +17,8 @@ function GameModule.newFromConfigs(configs, loaders)
 end
 
 function GameModule.newFromFile(path, loaders)
-  local configs = loadfile(path)()
+
+  local configs = ResourceLoader.loadfile(path)()
   return GameModule.newFromConfigs(configs, loaders)
 end
 

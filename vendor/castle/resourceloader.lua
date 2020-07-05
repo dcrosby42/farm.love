@@ -321,13 +321,17 @@ function Loaders.font(res, fontConfig)
   end
 end
 
+local function loadRelativeFile(path)
+  return loadfile(arg[1] .. "/" .. path) -- arg[1] is the "game directory" set by the runtime. On desktop it's usually "." but not so on ios etc.
+end
+
 local function loadDataFile(f)
   -- TODO: support json, yaml, other?
-  local chunk = loadfile(f)
+  local chunk = loadRelativeFile(f)
   if chunk then
     return chunk()
   else
-    error("loadfile(" .. f .. ") returned nil")
+    error("loadRelativeFile(" .. f .. ") returned nil")
   end
 end
 
@@ -433,9 +437,11 @@ function R.buildResourceRoot(configs, loaders)
 end
 
 function R.buildResourceRootFromFile(file, loaders)
-  local configs = loadfile(file)()
+  local configs = loadRelativeFile(file)()
   return R.buildResourceRoot(configs, loaders)
 end
+
+R.loadfile = loadRelativeFile
 
 R.Loaders = Loaders
 

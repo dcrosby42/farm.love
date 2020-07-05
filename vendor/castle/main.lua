@@ -1,8 +1,9 @@
 -- Enable loading a dir as a package via ${package}/init.lua
-package.path = package.path .. ";./?/init.lua"
-package.path = package.path .. ";./vendor/?.lua;./vendor/?/init.lua;./vendor/?"
+local dir = arg[1]
+package.path = package.path .. ";" .. dir .. "/?/init.lua"
+package.path = package.path .. ";" .. dir .. "/vendor/?.lua"
+package.path = package.path .. ";" .. dir .. "/vendor/?/init.lua"
 
-require "castle.helpers"
 local ModuleLoader = require "castle.moduleloader"
 
 local SoundCanvas = require "castle.soundcanvas"
