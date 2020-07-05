@@ -1,4 +1,4 @@
 # Elwen's Animals
 
-ipad game with several vignettes.
+Another ipad game for Elwen. Time for some colors and words and MORE SOUNDS
 
