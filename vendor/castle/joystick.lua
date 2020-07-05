@@ -80,7 +80,7 @@ Joystick.ControlMaps["Generic   USB  Joystick  "] =
     Joystick.ControlMaps.Dualshock
 Joystick.ControlMaps["GamePad Pro USB "] = Joystick.ControlMaps.GamePadPro
 
-Joystick.ControlMaps.Default = Joystick.ControlMaps.DualshockLayout
+Joystick.ControlMaps.Default = Joystick.ControlMaps.Dualshock
 Joystick.DefaultControlMap = Joystick.ControlMaps.Default
 
 function Joystick.getControlMap(name)
