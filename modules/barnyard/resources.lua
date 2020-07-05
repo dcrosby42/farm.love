@@ -84,14 +84,41 @@ return {
     data = {
       file = "modules/barnyard/sounds/cow.wav",
       type = "sound",
-      volume = 1,
+      volume = 0.7,
     },
   },
   {
     type = "sound",
     name = "cat",
     data = {
-      file = "modules/barnyard/sounds/cat.wav",
+      file = "modules/barnyard/sounds/cat1.wav",
+      type = "sound",
+      volume = 0.8,
+    },
+  },
+  {
+    type = "sound",
+    name = "dog",
+    data = {
+      file = "modules/barnyard/sounds/woofwoof.wav",
+      type = "sound",
+      volume = 1,
+    },
+  },
+  {
+    type = "sound",
+    name = "chicken",
+    data = {
+      file = "modules/barnyard/sounds/chicken.wav",
+      type = "sound",
+      volume = 1,
+    },
+  },
+  {
+    type = "sound",
+    name = "bunny",
+    data = {
+      file = "modules/barnyard/sounds/boing1.wav",
       type = "sound",
       volume = 1,
     },

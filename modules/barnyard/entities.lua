@@ -12,6 +12,7 @@ function E.initialEntities(res)
   local estore = Estore:new()
 
   local root = E.zooKeeper(estore, res)
+  E.floor(estore, res)
 
   local spawners = {
     {
@@ -72,12 +73,18 @@ function E.zooKeeper(estore, res)
     {'pic', {id = 'zoo_keeper', sx = 1, sy = 1.05}}, -- zoo_keeper.png is 731px tall, we want to stretch it to 768
     {'pos', {}},
     -- {'sound', {sound = 'farm_music', loop = true}},
-    -- {'physicsWorld', {gy = 9.8 * 64, allowSleep = false}},
+    {'physicsWorld', {gy = 9.8 * 64, allowSleep = false}},
   })
 end
 
-function E.pig(parent, res)
-  return E.animal(parent, 'pig', kind)
+function E.floor(estore, res)
+  return estore:newEntity({
+    {'name', {name = "floor"}},
+    {'tag', {name = 'floor'}},
+    {'body', {debugDraw = true, dynamic = false}},
+    {'rectangleShape', {w = 1024, h = 50}},
+    {'pos', {x = 512, y = 785}},
+  })
 end
 
 function E.animal(parent, kind, res)
