@@ -1,7 +1,5 @@
+local Switcher = require('castle.modules.switcher')
 local modules = {require('modules.barnyard'), require('modules.hayride')}
-
-local Switcher = require('modules.switcher')
-local inspect = require('inspect')
 
 local M = {}
 
