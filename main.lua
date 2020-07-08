@@ -1,6 +1,6 @@
 local Castle = require "vendor/castle/main"
 
-Castle.module_name = "modules/barnyard"
+Castle.module_name = "modules/root"
 Castle.onload = function()
   love.window.setMode(1024, 768, {
     fullscreen = false,

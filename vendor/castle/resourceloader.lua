@@ -325,7 +325,7 @@ local function loadRelativeFile(path)
   return loadfile(arg[1] .. "/" .. path) -- arg[1] is the "game directory" set by the runtime. On desktop it's usually "." but not so on ios etc.
 end
 
-local function loadDataFile(f)
+function R.loadLuaFile(f)
   -- TODO: support json, yaml, other?
   local chunk = loadRelativeFile(f)
   if chunk then
@@ -334,6 +334,8 @@ local function loadDataFile(f)
     error("loadRelativeFile(" .. f .. ") returned nil")
   end
 end
+
+local loadDataFile = R.loadLuaFile
 
 local function convertData(config, data)
   assert(config.dataconverter.require,

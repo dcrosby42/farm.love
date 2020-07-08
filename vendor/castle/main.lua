@@ -5,6 +5,7 @@ package.path = package.path .. ";" .. dir .. "/vendor/?.lua"
 package.path = package.path .. ";" .. dir .. "/vendor/?/init.lua"
 
 local ModuleLoader = require "castle.moduleloader"
+local GC = require 'garbagecollect'
 
 local SoundCanvas = require "castle.soundcanvas"
 local sndCanvas = SoundCanvas.default
@@ -120,6 +121,7 @@ local tickAction = {type = "tick", dt = 0}
 function love.update(dt)
   tickAction.dt = dt
   updateWorld(tickAction)
+  GC.ifNeeded(dt)
   tickAction.dt = 0
 end
 
