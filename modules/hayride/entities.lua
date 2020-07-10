@@ -8,6 +8,7 @@ local E = {}
 function E.initialEntities(res)
   local estore = Estore:new()
 
+  local bgmusicState = res.settings.dev.bgmusic and 'playing' or 'paused'
   estore:newEntity({
     {'pos', {x = 200, y = 200}},
     {
@@ -25,6 +26,7 @@ function E.initialEntities(res)
         font = 'cartoon_medium',
       },
     },
+    {'sound', {state = bgmusicState, sound = 'tractor_music', loop = true}},
   })
 
   return estore

@@ -12,7 +12,7 @@ return {
   {
     type = "settings",
     name = "dev",
-    data = {bgmusic = true, buttonBoxes = false},
+    data = {bgmusic = false, buttonBoxes = false},
   },
   {
     type = "pic",
@@ -56,8 +56,12 @@ return {
   },
   {
     type = "sound",
-    name = "farm_music",
-    data = {file = "modules/barnyard/sounds/music.wav", type = "music"},
+    name = "tractor_music",
+    data = {
+      file = "modules/barnyard/sounds/Pincushion.mp3",
+      type = "music",
+      volume = 0.7,
+    },
   },
   {
     type = "sound",

@@ -15,7 +15,7 @@ return function(estore, input, res)
       -- First, see if we touched an animal
       local hit
       estore:seekEntity(hasTag('animal'), function(e)
-        if dist(touch.x, touch.y, e.pos.x, e.pos.y) <= 70 then
+        if not e.touch and dist(touch.x, touch.y, e.pos.x, e.pos.y) <= 70 then
           hit = e
           return true
         end
@@ -50,7 +50,7 @@ return function(estore, input, res)
     -- Touch dragged
     moved = function(touch)
       -- Find the entity having a touch component that matches the id of this touch event
-      estore:walkEntities(hasComps('touch', 'pos'), function(e)
+      estore:seekEntity(allOf(hasTag('animal'), hasComps('touch')), function(e)
         if e.touch.touchid == touch.id then
           -- Move the entity where the touch is moving
           e.pos.x = touch.x
@@ -58,13 +58,15 @@ return function(estore, input, res)
           e.vel.dx = 0
           e.vel.dy = 0
           Touch.updateComponent(e.touch, touch)
+          return true
         end
       end)
     end,
 
     -- End of touch
     released = function(touch)
-      estore:walkEntities(hasComps('touch', 'pos'), function(e)
+      estore:walkEntities(allOf(hasTag('animal'), hasComps('touch')),
+                          function(e)
         if e.touch.touchid == touch.id then
           e.pos.x = touch.x
           e.pos.y = touch.y

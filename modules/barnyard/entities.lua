@@ -70,7 +70,7 @@ function E.zooKeeper(estore, res)
   local bgmusicState = res.settings.dev.bgmusic and 'playing' or 'paused'
 
   return estore:newEntity({
-    {'name', {name = "name"}},
+    {'name', {name = "zookeeper"}},
     {'tag', {name = "zookeeper"}},
     {'pic', {id = 'zoo_keeper', sx = 1, sy = 1.05}}, -- zoo_keeper.png is 731px tall, we want to stretch it to 768
     {'pos', {}},

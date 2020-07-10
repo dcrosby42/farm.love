@@ -2,7 +2,9 @@ local ResourceLoader = require 'castle.resourceloader'
 
 local M = {}
 
-M.newWorld = function(modules)
+M.newWorld = function(opts)
+  local modules = opts.modules
+  local current = opts.current or 1
   local w = {}
 
   w.instances = map(modules, function(module)
@@ -11,7 +13,7 @@ M.newWorld = function(modules)
       return {module = module, state = state}
     end)
   end)
-  w.current = 1
+  w.current = current
 
   return w
 end

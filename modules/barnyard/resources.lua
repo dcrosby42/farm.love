@@ -66,6 +66,15 @@ return {
   },
   {
     type = "sound",
+    name = "tractor_music",
+    data = {
+      file = "modules/barnyard/sounds/Pincushion.mp3",
+      type = "music",
+      volume = 0.7,
+    },
+  },
+  {
+    type = "sound",
     name = "pig",
     data = {
       file = "modules/barnyard/sounds/pig.wav",

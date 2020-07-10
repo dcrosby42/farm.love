@@ -24,7 +24,7 @@ return function(estore, input, res)
       -- First, see if we touched an animal
       local hit
       estore:seekEntity(hasComps('animalspawner'), function(e)
-        if hitButton(e, touch) then
+        if not e.touch and hitButton(e, touch) then
           hit = e
           return true -- end seek
         end
@@ -63,13 +63,14 @@ return function(estore, input, res)
     -- end,
 
     -- End of touch
-    -- released = function(touch)
-    --   estore:walkEntities(hasComps('touch', 'pos'), function(e)
-    --     if e.touch.touchid == touch.id then
-    --       e:removeComp(e.touch)
-    --     end
-    --   end)
-    -- end,
+    released = function(touch)
+      estore:seekEntity(hasComps('animalspawner', 'touch'), function(e)
+        if e.touch.touchid == touch.id then
+          e:removeComp(e.touch)
+          return true
+        end
+      end)
+    end,
 
   })
 end
