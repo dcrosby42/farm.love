@@ -1,6 +1,6 @@
 return {
   -- "castle.systems.viewportdraw",
-  -- "castle.systems.physicsdraw",
+  "castle.drawSystems.physics",
   -- "castle.systems.debugdraw",
   "castle.drawSystems.pic",
   "castle.drawSystems.shapes",

@@ -1,6 +1,7 @@
 local Comps = require "castle.components"
 local GC = require "garbagecollect"
 local Debug = (require("mydebug")).sub("Physics", false, false)
+local inspect = require('inspect')
 
 -- local logDebug = print
 local logDebug = function()
@@ -46,7 +47,7 @@ local physicsSystem = defineUpdateSystem({"physicsWorld"},
         obj = res.physics.newObject(world, e)
       end
       if obj == nil then
-        error("Can't build new physics object for " .. tflatten(e.body))
+        error("Can't build new physics object for " .. inspect(e.body))
       end
       oc[id] = obj
       Debug.println("New physics body for cid=" .. e.body.cid .. " kind=" ..
@@ -221,7 +222,7 @@ end
 local function removeContactComps(from, matching)
   local rem = {}
   if not from.contacts then
-    print("no contacts? " .. tflatten(from))
+    print("no contacts? " .. inspect(from))
     return
   end
   for _, contact in pairs(from.contacts) do
@@ -315,22 +316,22 @@ function newJoint(pw, jointComp, e, estore, objCache)
   if e == nil or jointComp == nil then
     error("newJoint requires an entity with a joint component")
   end
-  Debug.println("jointComp: " .. tflatten(jointComp))
+  Debug.println("jointComp: " .. inspect(jointComp))
 
   local fromComp = e.body
-  Debug.println("fromComp: " .. tflatten(fromComp))
+  Debug.println("fromComp: " .. inspect(fromComp))
 
   local toEnt = estore:getEntity(jointComp.toEntity)
   if not toEnt then
     error("No entity '" .. jointComp.toEntity .. "'; cannot make joint " ..
-              tflatten(jointComp))
+              inspect(jointComp))
   end
   local toComp = toEnt.body
   -- estore:seekEntity(hasTag(jointComp.to), function(e)
   --   toComp = e.body
   --   return true
   -- end)
-  Debug.println("toComp: " .. tflatten(toComp))
+  Debug.println("toComp: " .. inspect(toComp))
 
   local from = objCache[fromComp.cid]
   local to = objCache[toComp.cid]
@@ -357,12 +358,33 @@ function newJoint(pw, jointComp, e, estore, objCache)
       joint:setMotorSpeed(jointComp.motorspeed)
       joint:setMaxMotorForce(jointComp.maxmotorforce)
     end
+
+  elseif jointComp.kind == "wheel" then
+    local fromCenterX = from.body:getX()
+    local fromCenterY = from.body:getY()
+    local toCenterX = to.body:getX()
+    local toCenterY = to.body:getY()
+    Debug.println("fromCenterX=" .. fromCenterX .. " fromCenterY=" ..
+                      fromCenterY)
+    Debug.println("toCenterX=" .. toCenterX .. " toCenterY=" .. toCenterY)
+    local vx = toCenterX - fromCenterX
+    local vy = toCenterY - fromCenterY
+
+    joint = P.newWheelJoint(from.body, to.body, fromCenterX, fromCenterY,
+                            toCenterX, toCenterY, vx, vy, jointComp.docollide)
+    if jointComp.motorspeed ~= "" and jointComp.maxmotorforce ~= "" then
+      joint:setMotorEnabled(true)
+      joint:setMotorSpeed(jointComp.motorspeed)
+      joint:setMaxMotorForce(jointComp.maxmotorforce)
+    end
+
   elseif jointComp.kind == "weld" then
     local x = from.body:getX()
     local y = from.body:getY()
     joint = P.newWeldJoint(from.body, to.body, x, y, false)
+
   else
-    error("Cannot make a physics joint for: " .. tflatten(jointComp))
+    error("Cannot make a physics joint for: " .. inspect(jointComp))
   end
   return {joint = joint}
 end
