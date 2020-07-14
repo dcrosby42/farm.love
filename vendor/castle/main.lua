@@ -170,13 +170,13 @@ local function toKeyboardAction(state, key)
     key = "",
     ctrl = false,
     lctrl = false,
-    lctrl = false,
+    rctrl = false,
     shift = false,
     lshift = false,
-    lshift = false,
+    rshift = false,
     gui = false,
     lgui = false,
-    lgui = false,
+    rgui = false,
   }
   keyboardAction.state = state
   keyboardAction.key = key
@@ -213,13 +213,13 @@ local mouseAction = {
   isTouch = 0,
   ctrl = false,
   lctrl = false,
-  lctrl = false,
+  rctrl = false,
   shift = false,
   lshift = false,
-  lshift = false,
+  rshift = false,
   gui = false,
   lgui = false,
-  lgui = false,
+  rgui = false,
 }
 function toMouseAction(s, x, y, b, it, dx, dy)
   mouseAction.state = s
