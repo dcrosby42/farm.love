@@ -1,0 +1,83 @@
+= Module Actions
+
+== tick
+
+[source,lua]
+----
+{ 
+  type="tick", 
+  dt = 0.016667,
+}
+----
+
+== keyboard
+
+.Format:
+[source,lua]
+----
+{ 
+  type = "keyboard",
+  action = [ "pressed" | "released" ],
+  key = <key string>,
+  <modifiers> // <1>
+}
+----
+<1> See modifiers below
+
+.Example:
+[source,lua]
+----
+`{type="keyboard", action="pressed", key="f1", alt=true, lalt=true }`
+----
+
+
+== mouse
+
+.Format:
+[source,lua]
+----
+{
+  type = "mouse",
+  state = [ "pressed" | "moved" | released" ],
+  x = 0,
+  y = 0,
+  dx = 0,
+  dy = 0,
+  button = 0,
+  isTouch = 0, 
+  <modifiers> // <1>
+}
+----
+<1> See modifiers below
+
+
+== (modifiers)
+
+`keyboard` and `mouse` actions including information about any modifier keys that may be active to coincide with the main event.
+
+For modifier keys that have distinct left and right keys, both the general and specific forms are included.  Eg, if the left `shift` key is held during the event, both `shift` and `lshift` will be true in the action object.
+
+`gui` means Command on mac, Windows on win.
+
+----
+{
+  ...
+  ctrl = false,
+  lctrl = false,
+  rctrl = false,
+  shift = false,
+  lshift = false,
+  rshift = false,
+  gui = false,
+  lgui = false,
+  rgui = false,
+}
+----
+
+== touch
+=== pressed
+=== moved
+=== released
+== joystick
+== textinput
+== resize

@@ -1,0 +1,36 @@
+= Main
+
+`main.lua` is the starting point of all https://love2d.org/[LÖVE] (or "love2d") games.
+
+To make a game with Castle, your `main.lua` can be as simple as this:
+
+.main.lua
+[source,lua]
+----
+local Castle = require "vendor/castle/main"
+
+Castle.module_name = "modules/mygame"
+----
+
+== Hook: Castle.onload
+
+To do the kind of setup you would normally do in `function love.load()` in a normal love2 game, eg, set window size, resolution or fullscreen options), you implement the *Castle.onload* hook, and your program will normally look more like this:
+
+
+.main.lua
+[source,lua]
+----
+local Castle = require "vendor/castle/main"
+
+Castle.module_name = "modules/mygame"
+
+Castle.onload = function()
+  love.window.setMode(1024, 768, {
+    fullscreen = false,
+    resizable = false,
+    highdpi = false,
+    -- minwidth = 400,
+    -- minheight = 300,
+  })
+end
+----

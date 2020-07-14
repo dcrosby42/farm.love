@@ -1,0 +1,31 @@
+= Castle Modules
+
+A *Module* is the basic unit of game creation in Castle.  
+
+They do three things:
+
+- Initialize the world
+- Calculate a _new_ version of the world
+- Draw the world
+
+The details of *world* are decided by the Module's internal programming.
+
+== Root Module
+
+Your "root" Module is whichever module your game loads with.  (Many games will consist of a single Module, that's ok).
+
+== Actions
+
+== The 3 Module functions
+
+=== newWorld() -> world
+
+=== updateWorld(world, action) -> world
+
+=== drawWorld(world)
+
+== Advanced
+=== Side Effects
+=== Module Composition
+=== Switcher Module
+=== ECS Modules
