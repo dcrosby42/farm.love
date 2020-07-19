@@ -5,7 +5,7 @@ local M = {}
 
 function M.newWorld()
   local w = {}
-  w.switcher = Switcher.newWorld({modules = modules, current = 2})
+  w.switcher = Switcher.newWorld({modules = modules, current = 1})
   return w
 end
 
